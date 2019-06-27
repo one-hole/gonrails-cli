@@ -1,0 +1,9 @@
+package main
+
+import (
+  "{{.Modulename}}/routers"
+)
+
+func main() {
+  routers.Start()
+}
