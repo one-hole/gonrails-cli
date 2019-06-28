@@ -10,26 +10,43 @@ import (
 func New(projectName string) {
 
 	log.Printf("creating gonrails project named %s ...", projectName)
-	os.Mkdir(projectName, os.ModePerm)
+	_ = os.Mkdir(projectName, os.ModePerm)
 
 	for _, name := range dirs {
 		log.Println(fmt.Sprintf("making dir: %s/%s", projectName, name))
-		os.Mkdir(fmt.Sprintf("%s/%s", projectName, name), os.ModePerm)
+		_ = os.Mkdir(fmt.Sprintf("%s/%s", projectName, name), os.ModePerm)
 	}
 
 	touchMain(projectName)
 }
 
-func touchMain(modulename string) {
+func touchMain(moduleName string) {
+
+	log.Println("touching main.go ...")
+
 	type inventory struct {
-		Modulename string
+		ModuleName string
 	}
 
 	createFile(
-		"/Users/ctao/Mission/Golang/src/github.com/one-hole/gonrails-cli/watermelon/main.go",
-		"/Users/ctao/Mission/Golang/src/github.com/one-hole/gonrails-cli/templates/main.go.template",
+		fmt.Sprintf("%s/%s/main.go", pwd, moduleName),
+		fmt.Sprintf("%s/templates/main.go.template", pwd),
 		inventory{
-			Modulename: modulename,
+			ModuleName: moduleName,
 		},
 	)
+}
+
+/*
+	1. config/config.go
+	2. config/config.yml
+	3. config/app.yml
+	4. README.md
+*/
+func touchConfig(moduleName string) {
+
+}
+
+func touchRouter(moduleName string) {
+
 }

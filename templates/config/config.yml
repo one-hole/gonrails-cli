@@ -1,0 +1,27 @@
+debug:
+  MySQL:
+    host: 127.0.0.1
+    port: 3306
+    name: gonrails-dev
+    username: root
+    password: mypassword
+    connections: 60
+    idles: 10
+  Redis:
+    host: 127.0.0.1
+    port: 6379
+  RabbitMQ:
+    host: 127.0.0.1
+    port: 5672
+    user: guest
+    password: guest
+
+Production:
+  MySQL:
+    host: 127.0.0.1
+    port: 3306
+    name: gonrails-pro
+    username: root
+    password: mypassword
+    connections: 60
+    idles: 10

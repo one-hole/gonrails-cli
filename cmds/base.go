@@ -10,10 +10,11 @@ import (
 )
 
 var (
-	dirs = []string{"config", "routes", "models", "controllers", "serializers", "helper", "workers"}
+	dirs   = []string{"config", "routes", "models", "controllers", "serializers", "helper", "workers"}
+	pwd, _ = os.Getwd()
 )
 
-// create file with
+// create file with path and template
 func createFile(filePath string, templatePath string, data interface{}) {
 	file, err := os.Create(filePath)
 	helper.PanicError(err)
