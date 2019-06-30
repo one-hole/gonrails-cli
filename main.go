@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"os"
 
 	"github.com/one-hole/gonrails-cli/cmds"
@@ -25,9 +24,4 @@ func main() {
 	if "generate" == args[0] {
 
 	}
-
-	path := os.Getenv("GOPATH")
-
-	fmt.Println(path)
-
 }

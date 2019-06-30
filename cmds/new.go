@@ -22,7 +22,7 @@ func New(projectName string) {
 	touchMain(projectName)
 	touchConfig(projectName)
 	touchRouter(projectName)
-
+	touchControllers(projectName)
 }
 
 type ventory struct {
@@ -30,8 +30,6 @@ type ventory struct {
 }
 
 func touchMain(moduleName string) {
-
-	fmt.Println(fmt.Sprintf("%s/templates/main.go.template", helper.ProjectPath))
 
 	createFile(
 		fmt.Sprintf("%s/%s/main.go", pwd, moduleName),
@@ -69,6 +67,11 @@ func touchConfig(moduleName string) {
 	)
 }
 
+/*
+	1. routes/base.go
+	2. routes/admin/base.go
+*/
+
 func touchRouter(moduleName string) {
 	createFile(
 		fmt.Sprintf("%s/%s/routes/base.go", pwd, moduleName),
@@ -79,4 +82,27 @@ func touchRouter(moduleName string) {
 	)
 
 	_ = os.Mkdir(fmt.Sprintf("%s/routes/%s", moduleName, "admin"), os.ModePerm)
+
+	createFile(
+		fmt.Sprintf("%s/%s/routes/admin/base.go", pwd, moduleName),
+		fmt.Sprintf("%s/templates/routes/admin/base.go.template", helper.ProjectPath),
+		ventory{
+			ModuleName: moduleName,
+		},
+	)
+}
+
+/*
+	1. controllers/base.go
+	2. controllers/admin/home/index.go
+*/
+
+func touchControllers(moduleName string) {
+	createFile(
+		fmt.Sprintf("%s/%s/controllers/base.go", pwd, moduleName),
+		fmt.Sprintf("%s/templates/controllers/base.go.template", helper.ProjectPath),
+		nil,
+	)
+
+	_ = os.Mkdir(fmt.Sprintf("%s/controllers/%s", moduleName, "home"), os.ModePerm)
 }
