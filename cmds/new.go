@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/one-hole/gonrails-cli/helper"
 )
 
 // New - Creates a new gonrails project
@@ -29,9 +31,11 @@ type ventory struct {
 
 func touchMain(moduleName string) {
 
+	fmt.Println(fmt.Sprintf("%s/templates/main.go.template", helper.ProjectPath))
+
 	createFile(
 		fmt.Sprintf("%s/%s/main.go", pwd, moduleName),
-		fmt.Sprintf("%s/templates/main.go.template", pwd),
+		fmt.Sprintf("%s/templates/main.go.template", helper.ProjectPath),
 		ventory{
 			ModuleName: moduleName,
 		},
@@ -48,19 +52,19 @@ func touchMain(moduleName string) {
 func touchConfig(moduleName string) {
 	createFile(
 		fmt.Sprintf("%s/%s/config/config.go", pwd, moduleName),
-		fmt.Sprintf("%s/templates/config/config.go.template", pwd),
+		fmt.Sprintf("%s/templates/config/config.go.template", helper.ProjectPath),
 		nil,
 	)
 
 	createFile(
 		fmt.Sprintf("%s/%s/config/app.yml", pwd, moduleName),
-		fmt.Sprintf("%s/templates/config/app.yml", pwd),
+		fmt.Sprintf("%s/templates/config/app.yml", helper.ProjectPath),
 		nil,
 	)
 
 	createFile(
 		fmt.Sprintf("%s/%s/config/config.yml", pwd, moduleName),
-		fmt.Sprintf("%s/templates/config/config.yml", pwd),
+		fmt.Sprintf("%s/templates/config/config.yml", helper.ProjectPath),
 		nil,
 	)
 }
@@ -68,7 +72,7 @@ func touchConfig(moduleName string) {
 func touchRouter(moduleName string) {
 	createFile(
 		fmt.Sprintf("%s/%s/routes/base.go", pwd, moduleName),
-		fmt.Sprintf("%s/templates/routes/base.go.template", pwd),
+		fmt.Sprintf("%s/templates/routes/base.go.template", helper.ProjectPath),
 		ventory{
 			ModuleName: moduleName,
 		},
