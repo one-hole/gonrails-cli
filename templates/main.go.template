@@ -1,7 +1,7 @@
 package main
 
 import (
-  "{{.Modulename}}/routers"
+  "{{.ModuleName}}/routes"
 )
 
 func main() {

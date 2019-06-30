@@ -2,7 +2,7 @@ debug:
   MySQL:
     host: 127.0.0.1
     port: 3306
-    name: gonrails-dev
+    name: old-data-api
     username: root
     password: mypassword
     connections: 60
@@ -16,12 +16,11 @@ debug:
     user: guest
     password: guest
 
-Production:
+release:
   MySQL:
     host: 127.0.0.1
     port: 3306
-    name: gonrails-pro
-    username: root
+    user: root
     password: mypassword
     connections: 60
     idles: 10
