@@ -105,4 +105,10 @@ func touchControllers(moduleName string) {
 	)
 
 	_ = os.Mkdir(fmt.Sprintf("%s/controllers/%s", moduleName, "home"), os.ModePerm)
+
+	createFile(
+		fmt.Sprintf("%s/%s/controllers/home/index.go", pwd, moduleName),
+		fmt.Sprintf("%s/templates/controllers/home/index.go.template", helper.ProjectPath),
+		nil,
+	)
 }

@@ -2,11 +2,12 @@ package admin
 
 import (
 	"github.com/gin-gonic/gin"
-	"{{.ModuleName}}/controllers/admin/home"
+	"{{.ModuleName}}/controllers/home"
 )
 
 func ApplyRoutes(router *gin.RouterGroup) {
-	_ := router.Group("/admin")
+	admin := router.Group("/admin")
 	{
+	    admin.GET("/home", home.Index)
 	}
 }
