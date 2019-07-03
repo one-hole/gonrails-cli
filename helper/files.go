@@ -1,11 +1,19 @@
 package helper
 
 import (
+	"fmt"
 	"os"
 )
 
-//var ProjectPath = fmt.Sprintf("%s/src/github.com/one-hole/gonrails-cli", os.Getenv("GOPATH"))
-var ProjectPath, _ = os.Getwd()
+var ProjectPath string
+
+func init() {
+	if "true" == os.Getenv("DEV") {
+		ProjectPath, _ = os.Getwd()
+	} else {
+		ProjectPath = fmt.Sprintf("%s/src/github.com/one-hole/gonrails-cli", os.Getenv("GOPATH"))
+	}
+}
 
 // FileExists - file exists or not
 func FileExists(path string) bool {
