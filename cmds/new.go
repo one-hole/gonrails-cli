@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 
 	"github.com/one-hole/gonrails-cli/helper"
 )
@@ -24,6 +25,8 @@ func New(projectName string) {
 	touchRouter(projectName)
 	touchControllers(projectName)
 	touchSerializers(projectName)
+
+	initMod(projectName)
 }
 
 type ventory struct {
@@ -139,4 +142,30 @@ func touchSerializers(moduleName string) {
 		fmt.Sprintf("%s/templates/serializers/book_serializer.go", helper.ProjectPath),
 		nil,
 	)
+}
+
+/*
+	Go mod init
+*/
+
+func initMod(moduleName string) {
+	os.Chdir(moduleName)
+	pwd, _ := os.Getwd()
+	log.Printf("Now in directory: %s", pwd)
+
+	cmd := fmt.Sprintf("go mod init %s", moduleName)
+	log.Printf("Excuting command: %s", cmd)
+	ans := exec.Command("/bin/bash", "-c", cmd)
+	_, err := ans.Output()
+	if err != nil {
+		log.Println(err)
+	}
+
+	cmd = "go mod tidy"
+	log.Printf("Excuting command: %s", cmd)
+	ans = exec.Command("/bin/bash", "-c", cmd)
+	_, err = ans.Output()
+	if err != nil {
+		log.Println(err)
+	}
 }
