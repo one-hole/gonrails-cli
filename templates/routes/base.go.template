@@ -4,8 +4,10 @@ import (
 	"net/http"
 	"os"
 	"time"
-	
+
 	"{{.ModuleName}}/routes/admin"
+	"{{.ModuleName}}/controllers/home"
+	"{{.ModuleName}}/controllers/books"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,6 +29,10 @@ func routers() *gin.Engine {
 	root := router.Group("")
 	{
 		admin.ApplyRoutes(root)
+
+		root.GET("/home", home.Index)
+		root.GET("/books", books.Index)
+		root.GET("/books/:id", books.Show)
 	}
 	return router
 }

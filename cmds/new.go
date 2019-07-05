@@ -23,6 +23,7 @@ func New(projectName string) {
 	touchConfig(projectName)
 	touchRouter(projectName)
 	touchControllers(projectName)
+	touchSerializers(projectName)
 }
 
 type ventory struct {
@@ -105,10 +106,37 @@ func touchControllers(moduleName string) {
 	)
 
 	_ = os.Mkdir(fmt.Sprintf("%s/controllers/%s", moduleName, "home"), os.ModePerm)
+	_ = os.Mkdir(fmt.Sprintf("%s/controllers/%s", moduleName, "books"), os.ModePerm)
 
 	createFile(
 		fmt.Sprintf("%s/%s/controllers/home/index.go", pwd, moduleName),
 		fmt.Sprintf("%s/templates/controllers/home/index.go.template", helper.ProjectPath),
+		nil,
+	)
+
+	createFile(
+		fmt.Sprintf("%s/%s/controllers/books/index.go", pwd, moduleName),
+		fmt.Sprintf("%s/templates/controllers/books/index.go", helper.ProjectPath),
+		nil,
+	)
+
+	createFile(
+		fmt.Sprintf("%s/%s/controllers/books/show.go", pwd, moduleName),
+		fmt.Sprintf("%s/templates/controllers/books/show.go.template", helper.ProjectPath),
+		ventory{
+			ModuleName: moduleName,
+		},
+	)
+}
+
+/*
+	Serializers
+*/
+
+func touchSerializers(moduleName string) {
+	createFile(
+		fmt.Sprintf("%s/%s/serializers/book_serializer.go", pwd, moduleName),
+		fmt.Sprintf("%s/templates/serializers/book_serializer.go", helper.ProjectPath),
 		nil,
 	)
 }
