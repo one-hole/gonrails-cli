@@ -2,10 +2,18 @@ package helper
 
 import (
 	"fmt"
+	"html/template"
+	"io/ioutil"
+	"log"
 	"os"
+	"strings"
 )
 
+// ProjectPath for template files
 var ProjectPath string
+
+// Pwd for current dir
+var Pwd, _ = os.Getwd()
 
 func init() {
 	if "true" == os.Getenv("DEV") {
@@ -24,15 +32,16 @@ func FileExists(path string) bool {
 	return false
 }
 
-// CreateOrOpenFile -
-func CreateOrOpenFile(path string) (*os.File, error) {
+// CreateFile -
+func CreateFile(filePath string, templatePath string, data interface{}) {
 
-	var file *os.File
-	var err error
+	log.Printf("Creating file : %s", filePath)
 
-	if file, err = os.OpenFile(path, os.O_RDWR, os.ModeAppend); err != nil {
-		file, err = os.Create(path)
-	}
-
-	return file, err
+	file, err := os.Create(filePath)
+	PanicError(err)
+	contents, _ := ioutil.ReadFile(templatePath)
+	result := strings.Replace(string(contents), "\n", "", 1)
+	var t = template.Must(template.New("main").Parse(result))
+	err = t.Execute(file, data)
+	PanicError(err)
 }
