@@ -42,6 +42,12 @@
 ` gonrails-cli generate help`
 
 
+* useage .
+* help for each command (useage for each cmd)
+* colorful output
+* shorcut
+
+
 ---
 目前已经可以使用的功能:
 
