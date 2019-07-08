@@ -6,17 +6,28 @@ import (
 
 // Help - gonrails-cli help
 
-var useageTemplate = `gonrails-cli is the command line tools your Gonrails Web Application.
+var useageTemplate = `{{ "gonrails-cli" | bold }} is the command line tools for your Gonrails Web Application.
 
-USEAGE
+{{"USEAGE" | bold | red}}
 
 	gonrails-cli command [arguments]
 
-COMMANDS
+{{"COMMANDS" | bold | red}}
 	
-	new      -
-	help     -
-	generate -
+	new       Create a new project
+	help      Show the usage of commands
+	generate  Generate code by commands
+
+{{"EXAMPLES" | bold | red}}
+
+	new
+
+		'gonrails-cli new kalista'
+
+	generate
+
+		'gonrails-cli generate model user'
+		'gonrails-cli generate controller users actions:['index', 'create', 'delete', 'show', 'update']'
 `
 
 func Help() {
