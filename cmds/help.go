@@ -30,9 +30,6 @@ var useageTemplate = `{{ "gonrails-cli" | bold }} is the command line tools for 
 		'gonrails-cli generate controller users actions:['index', 'create', 'delete', 'show', 'update']'
 `
 
-func Help() {
-}
-
 func Useage() {
 	helper.Tmpl(useageTemplate, nil)
 }

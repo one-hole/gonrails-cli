@@ -2,11 +2,11 @@ package helper
 
 import (
 	"fmt"
-	"html/template"
 	"io/ioutil"
 	"log"
 	"os"
 	"strings"
+	"text/template"
 )
 
 // ProjectPath for template files
@@ -41,7 +41,7 @@ func CreateFile(filePath string, templatePath string, data interface{}) {
 	PanicError(err)
 	contents, _ := ioutil.ReadFile(templatePath)
 	result := strings.Replace(string(contents), "\n", "", 1)
-	var t = template.Must(template.New("main").Parse(result))
+	var t = template.Must(template.New(filePath).Parse(result))
 	err = t.Execute(file, data)
 	PanicError(err)
 }

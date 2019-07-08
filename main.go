@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/one-hole/gonrails-cli/cmds"
-	"github.com/one-hole/gonrails-cli/helper"
 )
 
 func main() {
@@ -13,19 +12,21 @@ func main() {
 	flag.Parse()
 	args := flag.Args()
 
-	if len(args) <= 1 {
+	if len(args) < 1 {
 		cmds.Useage()
 		os.Exit(2)
-		return
 	}
 
 	if "new" == args[0] {
 		cmds.New(args[1])
 	}
 
-	if "generate" == args[0] {
-
+	if "help" == args[0] {
+		cmds.Useage()
+		return
 	}
 
-	helper.Tmpl("myabc", nil)
+	if "generate" == args[0] {
+		cmds.Generate(args)
+	}
 }
