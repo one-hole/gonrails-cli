@@ -7,8 +7,9 @@ import (
 
 func FuncMap() template.FuncMap {
 	return template.FuncMap{
-		"bold": bold,
-		"red":  red,
+		"bold":       bold,
+		"red":        red,
+		"capitalize": capitalize,
 	}
 }
 

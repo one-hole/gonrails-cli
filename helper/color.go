@@ -3,6 +3,7 @@ package helper
 import (
 	"fmt"
 	"io"
+	"unicode"
 )
 
 // 这里提供终端的ASCII输出
@@ -22,4 +23,19 @@ func bold(message string) string {
 
 func red(message string) string {
 	return fmt.Sprintf("\x1b[31m%s\x1b[0m", message)
+}
+
+func capitalize(message string) string {
+	var upStr string
+	vm := []rune(message)
+	for i := 0; i < len(vm); i++ {
+		if i == 0 {
+			if unicode.IsLetter(vm[0]) {
+				upStr += string(vm[i] - 32)
+			}
+		} else {
+			upStr += string(vm[i])
+		}
+	}
+	return upStr
 }

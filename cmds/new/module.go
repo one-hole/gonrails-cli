@@ -7,6 +7,7 @@ import (
 	"os/exec"
 )
 
+// InitMod - execute go mod commands
 func InitMod(moduleName string) {
 	os.Chdir(moduleName)
 	pwd, _ := os.Getwd()

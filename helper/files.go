@@ -41,7 +41,17 @@ func CreateFile(filePath string, templatePath string, data interface{}) {
 	PanicError(err)
 	contents, _ := ioutil.ReadFile(templatePath)
 	result := strings.Replace(string(contents), "\n", "", 1)
-	var t = template.Must(template.New(filePath).Parse(result))
+	var t = template.Must(template.New(filePath).Funcs(FuncMap()).Parse(result))
 	err = t.Execute(file, data)
 	PanicError(err)
+}
+
+// FindOrCreateDir - should be nested admin/user
+func FindOrCreateDir(dirPath string) error {
+	if FileExists(dirPath) {
+		return nil
+	}
+	log.Printf("Making dir : %s\n", dirPath)
+	err := os.MkdirAll(dirPath, os.ModePerm)
+	return err
 }
