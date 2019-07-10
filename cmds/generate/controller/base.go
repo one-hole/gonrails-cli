@@ -36,6 +36,8 @@ func Exec(args []string) {
 		log.Fatal("Missing controller name")
 	}
 
+	fmt.Println(args[2])
+
 	mkdir(args[2])
 	touchActions(args)
 }
@@ -45,8 +47,8 @@ func mkdir(path string) {
 	if os.Getenv("DEV") == "true" {
 		dirPath = fmt.Sprintf("%s%s/%s", helper.Pwd, "/watermelon/controllers", path)
 	} else {
-		path, _ = os.Getwd() // 这个命令我希望是在项目的目录里面执行
-		dirPath = fmt.Sprintf("%s%s/%s", path, "/controllers", path)
+		tmpPath, _ := os.Getwd() // 这个命令我希望是在项目的目录里面执行
+		dirPath = fmt.Sprintf("%s%s/%s", tmpPath, "/controllers", path)
 	}
 
 	err := helper.FindOrCreateDir(dirPath)
