@@ -27,7 +27,7 @@ var useageTemplate = `{{ "gonrails-cli" | bold }} is the command line tools for 
 	generate
 
 		'gonrails-cli generate model user'
-		'gonrails-cli generate controller users actions:['index', 'create', 'delete', 'show', 'update']'
+		'gonrails-cli generate controller users index show update delete create'
 `
 
 func Useage() {
