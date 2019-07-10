@@ -21,8 +21,8 @@
  The command is `gonrails-cli generate controller yourcontroller action list`
  
  eg: 
- * `gonrails-cli generate controller user index update show` 
- * `gonrails-cli generate controller admin/user index update show` 
+ * `gonrails-cli generate controller users index update show` 
+ * `gonrails-cli generate controller admin/users index update show` 
 
 ##### 3.2
 
